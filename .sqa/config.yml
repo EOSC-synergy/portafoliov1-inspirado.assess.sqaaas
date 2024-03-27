@@ -1,0 +1,52 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: 2.0.0
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/LuisKeny001/portafoliov1-inspirado:
+      branch: main
+      repo: https://github.com/LuisKeny001/portafoliov1-inspirado
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/LuisKeny001/portafoliov1-inspirado git:
+        commands:
+        - /usr/bin/env sh .sqa/script.gamy-goldenrod-fish.sh
+        container: qc.acc_squirrely-black-wolf
+  QC.Doc:
+    repos:
+      github.com/LuisKeny001/portafoliov1-inspirado find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.goopy-auburn-ant.sh
+        container: qc.doc_woolly-orange-hound
+      github.com/LuisKeny001/portafoliov1-inspirado git:
+        commands:
+        - /usr/bin/env sh .sqa/script.tasty-cyan-dhole.sh
+        container: qc.doc_squeaky-cornflower-cheetah
+      github.com/LuisKeny001/portafoliov1-inspirado markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.flaky-harlequin-kingfisher.sh
+        container: qc.doc_hasty-ecru-gibbon
+  QC.Lic:
+    repos:
+      github.com/LuisKeny001/portafoliov1-inspirado licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.snippy-sangria-tapir.sh
+        container: qc.lic_trippy-violet-monster
+  QC.Sty:
+    repos:
+      github.com/LuisKeny001/portafoliov1-inspirado jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.stuffy-sangria-whale.sh
+        container: qc.sty_boozy-flax-donkey
+  QC.Ver:
+    repos:
+      github.com/LuisKeny001/portafoliov1-inspirado get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.crabby-magenta-hummingbird.sh
+        container: qc.ver_muzzy-periwinkle-barb
+timeout: 5400
